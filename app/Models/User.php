@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cpf',
+        'phone',
     ];
 
     /**
@@ -31,6 +33,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'type',
     ];
 
     /**
@@ -41,4 +44,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function establishment()
+    {
+        return $this->belongsTo(Establishment::class);
+    }
+
 }

@@ -16,9 +16,9 @@ class Order extends Model
         'cpf',
     ];
 
-    public function order_product()
+    public function products()
     {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Product::class);
     }
 
     public function establishment()
@@ -28,6 +28,6 @@ class Order extends Model
 
     public function menus()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsToMany(Menu::class);
     }
 }

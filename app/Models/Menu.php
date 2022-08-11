@@ -21,13 +21,13 @@ class Menu extends Model
         return $this->belongsTo(Establishment::class);
     }
 
-    public function menu_products()
+    public function products()
     {
-        return $this->belongsToMany(Establishment::class);
+        return $this->belongsToMany(Product::class);
     }
 
     public function orders()
     {
-        return $this->hasOne(Order::class);
+        return $this->hasMany(Order::class);
     }
 }

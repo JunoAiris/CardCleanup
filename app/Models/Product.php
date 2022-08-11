@@ -21,13 +21,13 @@ class Product extends Model
         return $this->belongsTo(Establishment::class);
     }
 
-    public function menu_products()
+    public function menus()
     {
-        return $this->belongsToMany(Menu_products::class);
+        return $this->hasMany(Menu::class);
     }
 
-    public function order_products()
+    public function orders()
     {
-        return $this->belongsToMany(Order_Products::class);
+        return $this->belongsToMany(Order::class);
     }
 }

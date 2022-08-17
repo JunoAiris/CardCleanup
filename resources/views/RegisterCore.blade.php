@@ -1,7 +1,5 @@
-@extends('layout')
-
 @section('content')
-  <div class="container mx-5 mb-3 border">
+  <div class="container mx-5 mb-3">
     <h2 class="mx-3">Registrar estabelecimento</h2>
     <div class="d-flex align-items-center mx-3">
       <br>

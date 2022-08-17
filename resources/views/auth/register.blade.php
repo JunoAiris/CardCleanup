@@ -1,121 +1,77 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
-  <div class="container mx-5 mb-3 border">
-    <h2 class="mx-3">Registrar estabelecimento</h2>
-    <div class="d-flex align-items-center mx-3">
-      <br>
-      <form method="POST">
-        <div class="row g-3 align-items-center">
-          <div class="col-auto ">
-            <label for="cnpj" class="col-form-label">CNPJ:</label>
-          </div>
-          <div class="col-auto ">
-            <input type="cnpj" id="cnpj" class="form-control" aria-describedby="CNPJ da empresa">
-          </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Register') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <br>
-        <div class="row g-3 align-items-center">
-          <div class="col-auto ">
-            <label for="rsocial" class="col-form-label">Razão Social</label>
-          </div>
-          <div class="col-auto ">
-            <input type="text" id="rsocial" class="form-control" aria-describedby="Razão Social">
-          </div>
-        </div>
-        <br>
-        <div class="row g-3 align-items-center">
-          <div class="col-auto ">
-            <label for="cep" class="col-form-label">CEP:</label>
-          </div>
-          <div class="col-auto ">
-            <input type="text" id="cep" class="form-control" aria-describedby="Endereço CEP">
-          </div>
-          <br>
-          <div class="row g-3 align-items-center">
-            <div class="col-auto ">
-              <label for="numeroendereco" class="col-form-label">Número do Endereço:</label>
-            </div>
-            <div class="col-auto ">
-              <input type="text" id="numeroendereco" class="form-control" aria-describedby="numeroendereco">
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="telefone" class="col-form-label">Telefone:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="text" id="Telefone" class="form-control" aria-describedby="Número de telefone">
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="ceo" class="col-form-label">Nome Gerente</label>
-              </div>
-              <div class="col-auto ">
-                <input type="text" id="ceo" class="form-control" aria-describedby="ceo">
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="cpf" class="col-form-label">CPF gerente:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="text" id="cpf" class="form-control" aria-describedby="CPF">
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="telceo" class="col-form-label">Telefone Gerente:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="text" id="telceo" class="form-control" aria-describedby="telceo">
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="inputEmail6" class="col-form-label">Email:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="email" id="inputEmail6" class="form-control" aria-describedby="emailHelpInline">
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="inputPassword6" class="col-form-label">Senha:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-              </div>
-              <div class="col-auto ">
-                <span id="passwordHelpInline" class="form-text">
-                  Senha deve ter de 8 a 20 caracteres
-                </span>
-              </div>
-            </div>
-            <br>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto ">
-                <label for="inputPasswordConfirm6" class="col-form-label">Confirme sua senha:</label>
-              </div>
-              <div class="col-auto ">
-                <input type="passwordConfirm" id="inputPasswordConfirm6" class="form-control" aria-describedby="passwordConfirmHelpInline">
-              </div>
-              <div class="col-auto ">
-                <span id="passwordConfirmHelpInline" class="form-text">
-                  Deve ser identica a senha anterior
-                </span>
-              </div>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Confirmar</button>
-      </form>
-      <br><a href="UserLogin" style="color: #003399;">Clique aqui para retornar ao login</a>
     </div>
-  </div>
+</div>
 @endsection

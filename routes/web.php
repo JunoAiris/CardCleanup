@@ -36,3 +36,7 @@ Route::get('/Edit_Produtos', 'App\Http\Controllers\EditProdutos@GateEditProdutos
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+route::middleware('auth')->group(function(){
+  Route::resource('user', App\Http\Controllers\UserController::class);
+});

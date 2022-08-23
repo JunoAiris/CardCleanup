@@ -206,7 +206,7 @@
   <div class="container p-3 m-3 mb-5 w-100 border border-dark bg-gradient bg-secondary text-dark">
     <div class="d-grid gap-2 col-6 mx-auto my-3">
       <h3 class="text-center col">Gerenciamento de Produtos</h3>
-      <a class="btn btn-dark text-light col" href="Criar_Produto">
+      <a class="btn btn-dark text-light col" href="{{ route('Produtos.create') }}">
         Adicionar novo produto
       </a>
     </div>
@@ -231,7 +231,7 @@
             <td>fill price</td>
             <td><input class="form-check-input mx-auto" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked=""></td>
             <td><img src="ico/info-square.svg" alt="Visualizar" data-bs-toggle="modal" data-bs-target="#modprodview"> </td>
-            <td><img src="ico/brush.svg" alt="Editar" href="Criar_Produto"></td>
+            <td><img src="ico/brush.svg" alt="Editar" href="{{ route('Produtos.create') }}"></td>
             <td><img src="ico/trash.svg" alt="Deletar" data-bs-toggle="modal" data-bs-target="#modproddel"> </td>
           </tr>
           <tr>
@@ -241,7 +241,7 @@
             <td>fill price</td>
             <td><input class="form-check-input mx-auto" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked=""></td>
             <td><img src="ico/info-square.svg" alt="Visualizar" data-bs-toggle="modal" data-bs-target="#modprodview"> </td>
-            <td><img src="ico/brush.svg" alt="Editar" href="Criar_Produto"></td>
+            <td><img src="ico/brush.svg" alt="Editar" href="{{ route('Produtos.create') }}"></td>
             <td><img src="ico/trash.svg" alt="Deletar" data-bs-toggle="modal" data-bs-target="#modproddel"> </td>
           </tr>
           <tr>
@@ -251,7 +251,7 @@
             <td>fill price</td>
             <td><input class="form-check-input mx-auto" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked=""></td>
             <td><img src="ico/info-square.svg" alt="Visualizar" data-bs-toggle="modal" data-bs-target="#modprodview"> </td>
-            <td><img src="ico/brush.svg" alt="Editar" href="Criar_Produto"></td>
+            <td><img src="ico/brush.svg" alt="Editar" href="{{ route('Produtos.create') }}"></td>
             <td><img src="ico/trash.svg" alt="Deletar" data-bs-toggle="modal" data-bs-target="#modproddel"></td>
           </tr>
         </tbody>

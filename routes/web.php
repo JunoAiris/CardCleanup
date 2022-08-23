@@ -21,8 +21,6 @@ Route::get('/Pedidos', 'App\Http\Controllers\Pedidos@GatePedidos');
 
 Route::get('/Cliente_Pedidos', 'App\Http\Controllers\ClientePedidos@GateClientePedidos');
 
-Route::get('/Criar_Produto', 'App\Http\Controllers\CriarProdutos@GateCriarProdutoss');
-
 Route::get('/Edit_Cardapios', 'App\Http\Controllers\EditCardapios@GateEditCardapios');
 
 Route::get('/Edit_Estabelecimento', 'App\Http\Controllers\EditEstabelecimento@GateEditEstabelecimento');
@@ -31,7 +29,7 @@ Route::get('/Edit_Funcionarios', 'App\Http\Controllers\EditFuncionarios@GateEdit
 
 Route::get('/Edit_Pedidos', 'App\Http\Controllers\EditPedidos@GateEditPedidos');
 
-Route::get('/Edit_Produtos', 'App\Http\Controllers\EditProdutos@GateEditProdutos');
+Route::resource('/Produtos', App\Http\Controllers\ProductController::class);
 
 Auth::routes();
 

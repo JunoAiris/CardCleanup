@@ -65,9 +65,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($product)
     {
-      dd();
       return view('products.edit', ['product'=>$product]);
     }
 
@@ -81,11 +80,19 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+      dd($product);
+
       $data = $request->all();
 
-      $product->update($data);
+      $available = isset($data['is_available'])?'1':'0';
 
-      return redirect()->route('products.index', ['product'=>$product]);
+      $data['is_available'] = $available;
+
+      $product->update($data);
+      dd($request);
+
+
+      return redirect()->route('produtos.index');
     }
 
     /**

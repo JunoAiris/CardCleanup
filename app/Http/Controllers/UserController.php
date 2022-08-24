@@ -79,10 +79,12 @@ class UserController extends Controller
         if ($data['password'] === null) {
           unset($data['password']);
         } else {
-          $data['password'] =\hash::make($data['password']);
+          $data['password'] =\Hash::make($data['password']);
         }
 
         $user->update($data);
+
+        dd($user);
 
         return redirect()->route('user.index', $user);
     }

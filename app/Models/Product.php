@@ -10,12 +10,17 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'name',
         'description',
         'price',
         'is_available',
     ];
+
+    protected $hidden = [
+        'id',
+    ];
+
+    protected $table = 'products';
 
     public function establishments()
     {

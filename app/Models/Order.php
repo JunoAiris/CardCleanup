@@ -16,6 +16,10 @@ class Order extends Model
         'cpf',
     ];
 
+    protected $hidden = [
+        'id',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);

@@ -16,7 +16,11 @@ class Establishment extends Model
         'address',
         'phone',
     ];
-    
+
+    protected $hidden = [
+        'id',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);

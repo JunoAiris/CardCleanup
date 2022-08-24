@@ -29,12 +29,14 @@ Route::get('/Edit_Funcionarios', 'App\Http\Controllers\EditFuncionarios@GateEdit
 
 Route::get('/Edit_Pedidos', 'App\Http\Controllers\EditPedidos@GateEditPedidos');
 
-Route::resource('/Produtos', App\Http\Controllers\ProductController::class);
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 route::middleware('auth')->group(function(){
   Route::resource('user', App\Http\Controllers\UserController::class);
+});
+
+route::middleware('auth')->group(function(){
+  Route::resource('produtos', App\Http\Controllers\ProductController::class);
 });

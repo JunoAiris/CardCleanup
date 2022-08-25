@@ -16,6 +16,10 @@ class Product extends Model
         'is_available',
     ];
 
+    protected $hidden = [
+        'id',
+    ];
+
     public function establishments()
     {
         return $this->belongsTo(Establishment::class);

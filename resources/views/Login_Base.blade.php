@@ -28,7 +28,7 @@
             <a class="nav-link text-light" href="Edit_Pedidos">Pedidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="Edit_Produtos">Produtos</a>
+            <a class="nav-link text-light" href="Produtos">Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="Edit_Funcionarios">Funcionarios</a>

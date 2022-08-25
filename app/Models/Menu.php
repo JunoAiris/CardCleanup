@@ -15,6 +15,9 @@ class Menu extends Model
         'password',
         'is_active',
     ];
+    protected $hidden = [
+        'id',
+    ];
 
     public function establishments()
     {

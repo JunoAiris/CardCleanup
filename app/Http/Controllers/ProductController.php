@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Product;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::all();
+      $products = Product::all();
 
-      return view('users.index', ['users'=>$users]);
+      return view('products.index', ['products'=>$products]);
     }
 
     /**
@@ -26,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('products.create');
     }
 
     /**
@@ -37,11 +39,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+      $data = $request->all();
 
-        User::create($data);
+      $data['price'] = (int) ($data['price']*100);
 
-        return redirect()->route('user.index');
+      $available = isset($data['is_available'])?'1':'0';
+
+      $data['is_available'] = $available;
+
+      Product::create($data);
+
+      return redirect()->route('produtos.index');
     }
 
     /**
@@ -61,9 +69,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('users.edit', ['user'=>$user]);
+      $product = Product::where('id',$id)->first();
+
+      return view('products.edit', ['product'=>$product]);
     }
 
     /**
@@ -73,20 +83,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-        if ($data['password'] === null) {
-          unset($data['password']);
-        } else {
-          $data['password'] =\Hash::make($data['password']);
-        }
+      $product = Product::where('id',$id)->first();
 
-        $user->update($data);
+      $data = $request->all();
 
-        dd($user);
+      $data['price'] = (int) ($data['price']*100);
 
-        return redirect()->route('user.index', $user);
+      $available = isset($data['is_available'])?'1':'0';
+
+      $data['is_available'] = $available;
+
+      $product->update($data);
+
+      return redirect()->route('produtos.index');
     }
 
     /**
@@ -97,7 +109,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+      $product = Product::where('id',$id)->first();
 
+      $product->delete();
+
+      return redirect()->route('produtos.index');
+    }
 }

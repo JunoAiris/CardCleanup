@@ -17,15 +17,33 @@
         <div class="mb-3">
           <label for="name" class="form-label">Nome</label>
           <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+          @error
+          <div class="text-danger">
+            {{ $message }}
+          </div>
+          @enderror
         </div>
+
         <div class="mb-3">
           <label for="description" class="form-label">Descrição</label>
           <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
+          @error
+            <div class="text-danger">
+              {{ $message }}
+            </div>
+          @enderror
+
         </div>
         <div class="mb-3 mt-2">
           <label for="price" class="form-label">Preço (Em centavos)</label>
           <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
+          @error
+            <div class="text-danger">
+              {{ $message }}
+            </div>
+          @enderror
         </div>
+
         <div class="m-3 form-check">
           <input type="checkbox" class="form-check-input" id="is_available" name="is_available" value="{{ old('is_available') }}">
           <label class="form-check-label" for="is_available">Disponivel?</label>

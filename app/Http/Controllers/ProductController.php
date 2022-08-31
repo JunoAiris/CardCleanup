@@ -43,6 +43,18 @@ class ProductController extends Controller
 
       $data['price'] = (int) ($data['price']*100);
 
+      if($request->hasFile('image')){
+        $imageFile = $request->file('image');
+      }
+
+      $image_path = $imageFile->storeAs(
+      "images/products/$product->id",
+      'image.jpg',
+      'public',
+      );
+
+      $data['unage_path'] = $image_path;
+
       $available = isset($data['is_available'])?'1':'0';
 
       $data['is_available'] = $available;

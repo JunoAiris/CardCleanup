@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Http\Requests\ProductRequest;
+use App\Models\Order;
+use App\Http\Requests\OrderRequest;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $products = Product::all();
+        $orders = Order::all();
 
-      return view('products.index', ['products'=>$products]);
+        return view('orders.index',['orders'=>$orders]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('orders.create');
     }
 
     /**
@@ -36,31 +36,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(OrderRequest $request)
     {
-      $data = $request->validated();
+        $data = $request->validated();
 
-      $data['price'] = (int) ($data['price']*100);
+        Order::create($order);
 
-      if($request->hasFile('image')){
-        $imageFile = $request->file('image');
-      }
-
-      $image_path = $imageFile->storeAs(
-      "images/products/$product->id",
-      'image.jpg',
-      'public',
-      );
-
-      $data['unage_path'] = $image_path;
-
-      $available = isset($data['is_available'])?'1':'0';
-
-      $data['is_available'] = $available;
-
-      Product::create($data);
-
-      return redirect()->route('produtos.index');
+        return redirect()->route('pedidos.index');
     }
 
     /**
@@ -82,9 +64,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-      $product = Product::where('id',$id)->first();
+        $order = Order::where('id',$id)->first();
 
-      return view('products.edit', ['product'=>$product]);
+        return view('orders.edit',['order'=>$order]);
     }
 
     /**
@@ -94,22 +76,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
-      $product = Product::where('id',$id)->first();
+      $order = Order::where('id',$id)->first();
 
       $data = $request->validated();
 
-      $data['price'] = (int) ($data['price']*100);
+      $order->update ($data);
 
-      $available = isset($data['is_available'])?'1':'0';
-
-      $data['is_available'] = $available;
-
-      $product->update($data);
-
-      return redirect()->route('produtos.index');
+      return redirect()->route('cardapios.index');
     }
 
     /**
@@ -120,10 +95,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-      $product = Product::where('id',$id)->first();
+      $order = Order::where('id',$id)->first();
 
       $product->delete();
 
-      return redirect()->route('produtos.index');
+      return redirect()->route('cardapios.index');
     }
 }

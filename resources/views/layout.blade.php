@@ -20,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link  text-light" href="Cardapio">Cardápio</a>
+              <a class="nav-link  text-light" href="cardapio">Cardápio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  text-light" href="Cliente_Pedidos">Pedidos</a>
+              <a class="nav-link  text-light" href="pedido">Pedidos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-light disabled" href="Edit_Cardapios">Painel de Controle</a>
@@ -51,6 +51,9 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('cardapio.index')}}">
+                      {{ 'Painel de Controle' }}
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

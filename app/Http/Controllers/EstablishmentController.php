@@ -17,7 +17,7 @@ class EstablishmentController extends Controller
     {
         $establishments = Establishment::all();
 
-        return view('establishments.index', ['establishments'=>$establishment]);
+        return view('establishments.index', ['establishments'=>$establishments]);
     }
 
     /**

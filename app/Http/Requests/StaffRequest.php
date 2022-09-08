@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrderRequest extends FormRequest
+class StaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,10 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'table_number' => 'required|numeric',
-            'status' => 'required',
-            'total_value' => 'required|numeric|min:50',
-            'menu_id' =>'nullable',
+            //
         ];
     }
 }

@@ -13,7 +13,6 @@ class Order extends Model
         'table_number',
         'status',
         'total_value',
-        'cpf',
     ];
 
     protected $hidden = [

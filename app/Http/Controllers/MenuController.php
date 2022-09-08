@@ -82,7 +82,10 @@ class MenuController extends Controller
      */
     public function update(MenuRequest $request, $id)
     {
+
         $menu = Menu::where('id',$id)->first();
+
+        $data = $request->validated();
 
         $menu->update($data);
 
@@ -99,7 +102,7 @@ class MenuController extends Controller
     {
         $menu = Menu::where('id',$id)->first();
 
-        $product->delete();
+        $menu->delete();
 
         return redirect()->route('cardapios.index');
     }

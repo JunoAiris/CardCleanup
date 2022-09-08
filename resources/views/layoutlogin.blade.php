@@ -20,19 +20,19 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link  text-light" aria-current="page" href="cardapios">Cardápios</a>
+            <a class="nav-link  text-light" aria-current="page" href="{{ route('cardapios.index')}}">Cardápios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  text-light" href="pedidos">Pedidos</a>
+            <a class="nav-link  text-light" href="{{route('pedidos.index')}}">Pedidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  text-light" href="produtos">Produtos</a>
+            <a class="nav-link  text-light" href="{{route('produtos.index')}}">Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  text-light" href="user">Funcionarios</a>
+            <a class="nav-link  text-light" href="{{route('user.index')}}">Funcionarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  text-light" href="estabelecimentos">Estabelecimentos</a>
+            <a class="nav-link  text-light" href="{{route('estabelecimentos.index')}}">Estabelecimentos</a>
           </li>
         </ul>
       </div>

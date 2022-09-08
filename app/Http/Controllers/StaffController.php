@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Http\Requests\OrderRequest;
 
-class OrderController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-
-        return view('orders.index',['orders'=>$orders]);
+        //
     }
 
     /**
@@ -27,7 +23,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        //
     }
 
     /**
@@ -36,13 +32,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-
-        Order::create($data);
-
-        return redirect()->route('pedidos.index');
+        //
     }
 
     /**
@@ -64,9 +56,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::where('id',$id)->first();
-
-        return view('orders.edit',['order'=>$order]);
+        //
     }
 
     /**
@@ -78,13 +68,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $order = Order::where('id',$id)->first();
-
-      $data = $request->validated();
-
-      $order->update ($data);
-
-      return redirect()->route('pedidos.index');
+        //
     }
 
     /**
@@ -95,10 +79,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-      $order = Order::where('id',$id)->first();
-
-      $order->delete();
-
-      return redirect()->route('pedidos.index');
+        //
     }
 }

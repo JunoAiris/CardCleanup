@@ -40,26 +40,28 @@ class ProductController extends Controller
     {
       $data = $request->validated();
 
-      $data['price'] = (int) ($data['price']*100);
-
-      if($request->hasFile('image')){
-        $imageFile = $request->file('image');
-      }
-
-      $image_path = $imageFile->storeAs(
-      "images/products/$product->id",
-      'image.jpg',
-      'public',
-      );
-
-      $data['unage_path'] = $image_path;
+      $data['establishment_id'] = \Auth::user()->establishment_id;
 
       $available = isset($data['is_available'])?'1':'0';
 
       $data['is_available'] = $available;
 
-      Product::create($data);
+      $data['price'] = (int) ($data['price']*100);
 
+      $product = Product::create($data);
+
+      if($request->hasFile('image')){
+        $imageFile = $request->file('image');
+
+        $product->update([
+          'image_path' => $imageFile->storeAs(
+            "images/products/$product->id",
+            'image.jpg',
+            'public',
+          )
+        ]);
+      }
+      
       return redirect()->route('produtos.index');
     }
 

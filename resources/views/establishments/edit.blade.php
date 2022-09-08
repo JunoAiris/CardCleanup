@@ -4,21 +4,21 @@
 
 <div class="container p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
   <div class="container">
-    <h3>Editar produto</h3>
-    <a class="btn btn-dark col text-light" href="{{ route('produtos.index')}}">
+    <h3 class="danger">Editar Estabelecimento</h3>
+    <a class="btn btn-dark col text-light" href="{{ route('estabelecimentos.index')}}">
       Voltar
     </a>
   </div>
 
   <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded justify-content-evenly">
-    <form method="POST" action="{{ route('produtos.update', $product->id)}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('estabelecimentos.update', $establishment->id)}}" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="row">
         <div class="mb-3">
-          <label for="name" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
-          @error('name')
+          <label for="company_name" class="form-label">Nome da Empresa</label>
+          <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('name') }}">
+          @error('company')
           <div class="text-danger">
             {{ $message }}
           </div>
@@ -26,35 +26,43 @@
         </div>
 
         <div class="mb-3">
-          <label for="description" class="form-label">Descrição</label>
-          <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
-          @error('description')
+          <label for="description" class="form-label">Razão Social</label>
+          <input type="text" class="form-control" id="trading_name" name="trading_name" value="{{ old('trading_name') }}">
+          @error('trading_name')
           <div class="text-danger">
             {{ $message }}
           </div>
           @enderror
-
         </div>
 
         <div class="mb-3 mt-2">
-          <label for="price" class="form-label">Preço (Em centavos)</label>
-          <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
-          @error('price')
+          <label for="price" class="form-label">CNPJ</label>
+          <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ old('cnpj') }}">
+          @error('cnpj')
             <div class="text-danger">
               {{ $message }}
             </div>
           @enderror
         </div>
 
-        <div class="m-3 form-check">
-          <input type="checkbox" class="form-check-input" id="is_available" name="is_available" value="1">
-          <label class="form-check-label" for="is_available">Disponivel?</label>
-          @error('is_available')
-          <div class="text-danger">
-            {{ $message }}
-          </div>
+        <div class="mb-3 mt-2">
+          <label for="price" class="form-label">Endereço</label>
+          <input type="text" class="form-control" id="adress" name="adress" value="{{ old('adress') }}">
+          @error('adress')
+            <div class="text-danger">
+              {{ $message }}
+            </div>
           @enderror
+        </div>
 
+        <div class="mb-3 mt-2">
+          <label for="price" class="form-label">Telefone</label>
+          <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
+          @error('phone')
+            <div class="text-danger">
+              {{ $message }}
+            </div>
+          @enderror
         </div>
 
         <div class="my-3">

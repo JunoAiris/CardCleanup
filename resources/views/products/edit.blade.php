@@ -55,6 +55,16 @@
           </div>
           @enderror
 
+          <div class="m-3 form-check">
+            <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
+            <input type="file" name="image" class="form-control" accept="image/*">
+          </div>
+          @error('image')
+          <div class="text-danger">
+            {{ $message }}
+          </div>
+          @enderror
+
         </div>
 
         <div class="my-3">

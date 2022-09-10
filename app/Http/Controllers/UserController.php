@@ -16,7 +16,7 @@ class UserController extends Controller
     {
       $users = User::all();
 
-      return view('users.index', ['users'=>$users]);
+      return view('user.index', ['users'=>$users]);
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('user.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', ['user'=>$user]);
+        return view('user.edit', ['user'=>$user]);
     }
 
     /**
@@ -84,8 +84,6 @@ class UserController extends Controller
 
         $user->update($data);
 
-        dd($user);
-
         return redirect()->route('user.index', $user);
     }
 
@@ -97,7 +95,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = User::where('id',$id)->first();
+
+      $user->delete();
+
+      return redirect()->route('user.index');
     }
 
 }

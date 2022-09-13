@@ -30,3 +30,5 @@ Route::resource('produtos', App\Http\Controllers\ProductController::class);
 route::middleware('auth')->group(function(){
   Route::resource('user', App\Http\Controllers\UserController::class);
 });
+
+Route::resource('menuproduct', App\Http\Controllers\MenuProductsController::class);

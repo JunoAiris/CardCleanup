@@ -20,13 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link  text-light" href="cardapio">Cardápio</a>
+              <a class="nav-link  text-light" href="{{ route('menu.public.show')}}">Cardápio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  text-light" href="pedido">Pedidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light disabled" href="Edit_Cardapios">Painel de Controle</a>
+              <a class="nav-link  text-light" href="">Pedidos</a>
             </li>
           </ul>
         </div>

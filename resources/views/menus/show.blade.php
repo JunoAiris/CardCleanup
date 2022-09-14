@@ -1,4 +1,4 @@
-@extends('layoutlogin')
+@extends('home')
 @section('title','Cardapios')
 @section('content')
 <div class="container p-3 m-3 mb-5 w-100 border border-dark bg-gradient bg-secondary text-dark">

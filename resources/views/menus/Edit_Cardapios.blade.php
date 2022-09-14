@@ -1,4 +1,4 @@
-@extends('layoutlogin')
+@extends('home')
 @section('title','Cardápios')
   <!-- Edit -->
   <div class="modal fade" id="modcardedit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEdit" aria-hidden="true">

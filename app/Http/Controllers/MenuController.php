@@ -69,6 +69,11 @@ class MenuController extends Controller
         return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
     }
 
+    public function showPublic(Menu $menu)
+    {
+      return view('menu.public.show', ['menu'=>$menu]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

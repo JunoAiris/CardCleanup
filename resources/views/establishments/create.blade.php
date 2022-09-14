@@ -1,4 +1,4 @@
-@extends('layoutlogin')
+@extends('home')
 @section('title','Adicionar produto')
 @section('content')
 

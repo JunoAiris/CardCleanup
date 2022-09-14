@@ -27,8 +27,10 @@ Route::resource('pedidos', App\Http\Controllers\OrderController::class);
 
 Route::resource('produtos', App\Http\Controllers\ProductController::class);
 
-route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
   Route::resource('user', App\Http\Controllers\UserController::class);
 });
 
-Route::resource('menuproduct', App\Http\Controllers\MenuProductsController::class);
+Route::resource('menuProduct', App\Http\Controllers\MenuProductController::class);
+
+Route::get('/cardapio/{menu}', 'App\Http\Controllers\MenuController@showPublic')->name('menu.public.show');

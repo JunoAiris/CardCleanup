@@ -1,4 +1,4 @@
-@extends('home')
+@extends('layout')
 @section('title','Adicionar cardápio')
 @section('content')
 

@@ -13,65 +13,67 @@
   <!-- Navbar start -->
   <nav class="navbar navbar-expand-lg bg-dark text-light">
     <div class="container-fluid">
-      <a class="navbar-brand text-light" href="{{route('home')}}">Cardápio Virtual</a>
+      <a class="navbar-brand text-info" href="{{route('home')}}">Cardápio Virtual</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link  text-light" aria-current="page" href="{{ route('cardapios.index')}}">Cardápios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  text-light" href="{{route('pedidos.index')}}">Pedidos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  text-light" href="{{route('produtos.index')}}">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  text-light" href="{{route('user.index')}}">Funcionarios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  text-light" href="{{route('estabelecimentos.index')}}">Estabelecimentos</a>
-          </li>
-        </ul>
-      </div>
-      <div class="px-3 py-2 bg-dark mb-3">
-        <div class="container d-flex flex-wrap justify-content-end">
-            @guest
-                @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                @endif
-
-                @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                @endif
-            @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+        @guest
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav bg-dark m-3">
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="">Cardápio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="">Pedidos</a>
+              </li>
+            </ul>
+          </div>
+          <div class="container d-flex flex-wrap justify-content-end px-3 py-2 bg-dark mb-3">
+              @if (Route::has('login'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+              @endif
+          </div>
+        @else
+          <div class="collapse navbar-collapse " id="navbarNavDropdown">
+            <ul class="navbar-nav bg-dark m-3">
+              <li class="nav-item">
+                <a class="nav-link  text-light" aria-current="page" href="{{ route('cardapios.index')}}">Cardápios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="{{route('pedidos.index')}}">Pedidos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="{{route('produtos.index')}}">Produtos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="{{route('user.index')}}">Funcionarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  text-light" href="{{route('estabelecimentos.index')}}">Estabelecimentos</a>
+              </li>
+            </ul>
+          </div>
+          <div class="container d-flex flex-wrap justify-content-end">
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('cardapios.index')}}">
-                          {{ 'Painel de Controle' }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            @endguest
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                  </div>
+              </li>
+          </div>
+          @endguest
         </div>
       </div>
     </div>

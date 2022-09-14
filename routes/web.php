@@ -31,6 +31,10 @@ Route::middleware('auth')->group(function(){
   Route::resource('user', App\Http\Controllers\UserController::class);
 });
 
-Route::resource('menuProduct', App\Http\Controllers\MenuProductController::class);
+Route::resource('menuProduct', App\Http\Controllers\MenuProductController::class)->only(['store','destroy']);
 
 Route::get('/cardapio/{menu}', 'App\Http\Controllers\MenuController@showPublic')->name('menu.public.show');
+
+Route::post('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@store')->name('MenuProductStore');
+
+Route::delete('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@destroy')->name('MenuProductDestroy');

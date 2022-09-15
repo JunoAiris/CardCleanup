@@ -15,6 +15,7 @@ class Menu extends Model
         'password',
         'is_active',
         'establishment_id',
+        'image_path',
     ];
     protected $hidden = [
         'id',

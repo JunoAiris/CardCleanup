@@ -2,7 +2,8 @@
 @section ('title', 'Produtos')
 @section('content')
 
-<div class="container p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+<div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+
   <div class="container">
     <h3>Editar produto</h3>
     <a class="btn btn-dark col text-light" href="{{ route('produtos.index')}}">
@@ -54,17 +55,16 @@
             {{ $message }}
           </div>
           @enderror
+        </div>
 
-          <div class="m-3 form-check">
-            <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
-            <input type="file" name="image" class="form-control" accept="image/*">
-          </div>
+        <div class="m-3 form-check">
+          <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
+          <input type="file" name="image" class="form-control" accept="image/png, image/jpeg">
           @error('image')
           <div class="text-danger">
             {{ $message }}
           </div>
           @enderror
-
         </div>
 
         <div class="my-3">

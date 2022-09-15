@@ -14,6 +14,7 @@ class Product extends Model
         'description',
         'price',
         'is_available',
+        'image_path',
     ];
 
     protected $hidden = [

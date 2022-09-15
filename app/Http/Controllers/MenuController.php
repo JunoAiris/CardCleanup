@@ -41,11 +41,23 @@ class MenuController extends Controller
     {
         $data = $request->validated();
 
-        Menu::create($data);
+        $menu = Menu::create($data);
 
         $active = isset($data['is_active'])?'1':'0';
 
         $data['is_active'] = $active;
+
+        if($request->hasFile('image')){
+          $imageFile = $request->file('image');
+
+          $menu->update([
+            'image_path' => $imageFile->storeAs(
+              "images/products/$menu->id",
+              'image.jpg',
+              'public',
+            )
+          ]);
+        }
 
         return redirect()->route('cardapios.index');
     }

@@ -1,7 +1,8 @@
 @extends('layout')
 @section('title','Editar Usuário')
 @section('content')
-<div class="container p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+<div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+
   <div class="container">
     <h3>Editar Usuário</h3>
     <a class="btn btn-dark col text-light" href="{{ route('user.index')}}">
@@ -59,15 +60,7 @@
             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
             <div class="col-md-6">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-            </div>
-        </div>
-
-        <div class="row mb-0">
-            <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Register') }}
-                </button>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" value="">
             </div>
         </div>
 
@@ -75,7 +68,7 @@
             <label for="cpf" class="col-md-4 col-form-label text-md-end">{{ __('CPF') }}</label>
 
             <div class="col-md-6">
-                <input id="cpf" type="text" class="form-control" name="cpf">
+                <input id="cpf" type="text" class="form-control" name="cpf" value="{{$user->cpf}}">
             </div>
             @error('cpf')
                 <span class="invalid-feedback" role="alert">

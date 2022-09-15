@@ -27,6 +27,7 @@ class MenuRequest extends FormRequest
             'name' => 'required|min:2|max:256',
             'description' => 'nullable|max:512',
             'is_active' => 'boolean|nullable',
+            'image_path' => 'nullable|file'
         ];
     }
 }

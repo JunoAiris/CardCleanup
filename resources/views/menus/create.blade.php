@@ -2,7 +2,8 @@
 @section('title','Adicionar cardápio')
 @section('content')
 
-  <div class="container p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+  <div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+
     <div class="container">
       <h3>Registro de cardápios</h3>
       <a class="btn btn-dark col text-light" href="{{ route('cardapios.index')}}">
@@ -39,6 +40,16 @@
             <input type="checkbox" class="form-check-input" id="is_available" name="is_active" value="1">
             <label class="form-check-label" for="is_available">Cardápio ativo?</label>
             @error('is_active')
+            <div class="text-danger">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+
+          <div class="m-3 form-check">
+            <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
+            <input type="file" name="image" class="form-control" accept="image/png, image/jpeg">
+            @error('image')
             <div class="text-danger">
               {{ $message }}
             </div>

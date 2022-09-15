@@ -2,7 +2,8 @@
 @section ('title', 'Produtos')
 @section('content')
 
-<div class="container p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+<div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+
   <div class="container">
     <h3 class="danger">Editar Estabelecimento</h3>
     <a class="btn btn-dark col text-light" href="{{ route('estabelecimentos.index')}}">

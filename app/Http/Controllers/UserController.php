@@ -16,7 +16,7 @@ class UserController extends Controller
     {
       $users = User::all();
 
-      return view('users.index');
+      return view('users.index', ['users'=>$users]);
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', ['user'=>$user]);
+        return view('users.edit', ['user'=>$user]);
     }
 
     /**

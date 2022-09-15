@@ -16,6 +16,7 @@
           <th>Descrição</th>
           <th>Preço</th>
           <th>Disponibilidade</th>
+          <th>Imagem</th>
           <th>Editar</th>
           <th>Deletar</th>
         </thead>
@@ -24,8 +25,9 @@
             <tr>
               <th scope="row">{{$product->name}}</th>
               <td>{{$product->description}}</td>
-              <td>{{($product->price)/100}}</td>
+              <td>R$: {{($product->price)/100}}</td>
               <td>@if ($product->is_available == 1) Disponível @else Indisponível @endif</td>
+              <td><img src="{{asset('/storage/'.$product->image_path)}}" width="50" height="60" alt="Sem Imagem"> </td>
               <td>
                 <a alt="Editar" href="{{ route('produtos.edit', $product->id)}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#505050" class="bi bi-brush" viewBox="0 0 16 16">

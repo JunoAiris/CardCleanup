@@ -17,7 +17,8 @@
           <th>Status</th>
           <th>Criado em</th>
           <th>Ultima atualização</th>
-          <th>Ver detalhes</th>
+          <th>Imagem</th>
+          <th>Ver Produtos</th>
           <th>Editar</td>
           <th>Deletar</th>
         </thead>
@@ -29,8 +30,9 @@
               <td>@if ($menu->is_active == 1) Ativo @else Inativo @endif</td>
               <td>{{$menu->created_at}}</td>
               <td>{{$menu->updated_at}}</td>
+              <td><img src="{{asset('/storage/'.$menu->image_path)}}" width="50" height="60" alt="Sem Imagem"> </td>
               <td>
-                <a alt="Ver Detalhes" href="{{ route('cardapios.show', $menu->id)}}">
+                <a alt="Ver Produtos" href="{{ route('cardapios.show', $menu->id)}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#505050" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg>

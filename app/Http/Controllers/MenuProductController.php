@@ -16,8 +16,10 @@ class MenuProductController extends Controller
         return redirect()->route('cardapios.show', $menu->id);
     }
 
-    public function destroy(Menu $menu, Product $product)
+    public function destroy($menu_id, $product_id)
     {
+        $menu = Menu::where('id',$menu_id)->first(); //I swear to god, this band-aid is starting to piss me off but Laravel refuses to work without it
+        $product = Product::where('id',$product_id)->first(); // OH COOL, IT'S MULTIPLYING NOW, WHERE DID I GO WRONG?
         $menu->products()->detach($product->id);
         return redirect()->route('cardapios.show', $menu->id);
     }

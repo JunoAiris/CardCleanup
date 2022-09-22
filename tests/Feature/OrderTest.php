@@ -6,13 +6,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Menu;
+use App\Models\Order;
 
 
-
-class MenuTest extends TestCase
+class OrderTest extends TestCase
 {
-
   protected function setUp():void {
 
     parent::setUp();
@@ -34,39 +32,34 @@ class MenuTest extends TestCase
   }
 
   public function test_page_exists(){
-    $response = $this->get('/cardapios');
+    $response = $this->get('/pedidos');
 
     $response->assertStatus(200);
   }
 
   public function test_data_register_successful_plus_redirect(){
-    $response = $this->post('/cardapios', [
-      'name' => 'TempTest',
-      'description' => 'TempTest',
-      'is_active' => '1',
+    $response = $this->post('/pedidos', [
+      'table_number' => '1',
+      'status' => 'Em Progresso',
+      'total_value' => '4242',
     ]);
 
     $response->assertRedirect()
      ->assertSessionHasNoErrors();
 
-    $this->assertDatabaseHas('menus', [
-      'name' => 'TempTest',
-      'description' => 'TempTest',
+    $this->assertDatabaseHas('orders', [
+      'table_number' => '1',
+      'status' => 'Em Progresso',
+      'total_value' => '4242',
     ]);
   }
 
   public function test_data_register_halt_on_invalid_data(){
-    $response =$this->post('/cardapios', [
-      'description' => 'TempTest',
-      'is_active' => '0',
+    $response =$this->post('/pedidos', [
+      'table_number' => 'NAN',
+      'status' => 'Em Progresso',
+      'total_value' => '4242',
     ]);
 
-    $response->assertRedirect()->assertInvalid(['name']);
-  }
-
-  public function test_data_deletion_from_db(){
-    $response = $this->delete('/cardapios', [
-
-    ]);
-  }
-}
+    $response->assertRedirect()->assertInvalid(['table_number']);
+  }}

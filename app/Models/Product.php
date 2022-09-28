@@ -22,6 +22,8 @@ class Product extends Model
         'id',
     ];
 
+    protected $table = 'products';
+
     public function establishments()
     {
         return $this->belongsTo(Establishment::class);

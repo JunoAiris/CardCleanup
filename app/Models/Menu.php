@@ -20,7 +20,7 @@ class Menu extends Model
     protected $hidden = [
         'id',
     ];
-
+    
     public function establishments()
     {
         return $this->belongsTo(Establishment::class);

@@ -40,6 +40,8 @@ class OrderController extends Controller
     {
         $data = $request->validated();
 
+        $data['establishment_id'] = \Auth::user()->establishment_id;
+
         Order::create($data);
 
         return redirect()->route('pedidos.index');

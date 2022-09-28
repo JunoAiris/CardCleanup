@@ -13,6 +13,7 @@ class Order extends Model
         'table_number',
         'status',
         'total_value',
+        'establishment_id',
     ];
 
     protected $hidden = [

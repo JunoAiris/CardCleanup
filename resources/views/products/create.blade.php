@@ -2,16 +2,14 @@
 @section('title','Adicionar produto')
 @section('content')
 
-  <div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+  <div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark w-auto">
 
-    <div class="container">
-      <h3>Registro de produtos</h3>
-      <a class="btn btn-dark col text-light" href="{{ route('produtos.index')}}">
-        Voltar
-      </a>
-    </div>
+    <h3>Registro de produtos</h3>
+    <a class="btn btn-dark col text-light" href="{{ route('produtos.index')}}">
+      Voltar
+    </a>
 
-    <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded justify-content-evenly">
+    <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded">
       <form method="POST" action="{{ route('produtos.store') }}" enctype="multipart/form-data">
         @csrf
 
@@ -57,7 +55,7 @@
 
           </div>
 
-          <div class="m-3 form-check">
+          <div class="m-3 form-check w-25">
             <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
             <input type="file" name="image" class="form-control" accept="image/png, image/jpeg">
             @error('image')

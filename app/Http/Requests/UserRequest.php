@@ -27,8 +27,8 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'cpf' => 'required|numeric',
-            'phone' => 'nullable|numeric|min:9',
+            'cpf' => 'required|numeric|min:11|max:11',
+            'phone' => 'nullable|numeric|min:12|max:12',
             'type' => 'required'
         ];
     }

@@ -25,7 +25,7 @@ class MenuRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:256',
-            'description' => 'required|max:512',
+            'description' => 'required|min:2|max:512',
             'is_active' => 'boolean',
             'image_path' => 'nullable|file'
         ];

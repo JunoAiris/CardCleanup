@@ -41,6 +41,8 @@ class MenuController extends Controller
     {
         $data = $request->validated();
 
+        $data['establishment_id'] = \Auth::user()->establishment_id;
+
         $menu = Menu::create($data);
 
         $active = isset($data['is_active'])?'1':'0';

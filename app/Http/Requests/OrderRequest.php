@@ -26,7 +26,8 @@ class OrderRequest extends FormRequest
         return [
             'table_number' => 'required|numeric',
             'status' => 'required',
-            'total_value' => 'required|numeric|min:50',
+            'total_value' => 'required|numeric',
+            'establishment_id' => '',
         ];
     }
 }

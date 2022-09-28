@@ -1,17 +1,16 @@
 @extends('layout')
 
 @section('content')
-<div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+<div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark w-auto">
 
   <div class="container">
     <h3>Registro de Estabelecimento</h3>
     <a class="btn btn-dark col text-light" href="{{ route('cardapios.index')}}">
       Voltar
     </a>
-  </div>
 
-  <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded">
-      <form method="POST" action="{{ route('register') }}">
+    <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded">
+        <form method="POST" action="{{ route('register') }}">
           @csrf
 
           <div class="row mb-3"><hr>Gerente</div>
@@ -181,6 +180,8 @@
                   </button>
               </div>
           </div>
-      </form>
+        </form>
+      </div>
     </div>
+  </div>
 @endsection

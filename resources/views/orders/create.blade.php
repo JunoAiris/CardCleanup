@@ -2,16 +2,14 @@
 @section('title','Registro de Pedido')
 @section('content')
 
-  <div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark">
+  <div class="container-fluid p-3 m-3 mb-5 border border-dark bg-gradient bg-secondary text-dark w-auto">
 
-    <div class="container">
-      <h3>Registrar Pedido</h3>
-      <a class="btn btn-dark col text-light" href="{{ route('pedidos.index')}}">
-        Voltar
-      </a>
-    </div>
+    <h3>Registrar Pedido</h3>
+    <a class="btn btn-dark col text-light" href="{{ route('pedidos.index')}}">
+      Voltar
+    </a>
 
-    <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded justify-content-evenly">
+    <div class="d-flex flex-row p-3 m-3 border border-3 border-dark bg-gradient bg-dark bg-opacity-25 rounded">
       <form method="POST" action="{{ route('pedidos.store') }}" enctype="multipart/form-data">
         @csrf
 

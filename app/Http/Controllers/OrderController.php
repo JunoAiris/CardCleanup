@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Order;
+use App\Http\Requests\OrderRequest;
 
-class UserController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::where('establishment_id', \Auth::user()->establishment_id)->get();
+        $orders = Order::where('establishment_id', \Auth::user()->establishment_id)->get();
 
-      return view('users.index', ['users'=>$users]);
+        return view('orders.index',['orders'=>$orders]);
     }
 
     /**
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('orders.create');
     }
 
     /**
@@ -35,13 +36,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
-        User::create($data);
+        $data['establishment_id'] = \Auth::user()->establishment_id;
 
-        return redirect()->route('user.index');
+        Order::create($data);
+
+        return redirect()->route('pedidos.index');
     }
 
     /**
@@ -61,9 +64,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('users.edit', ['user'=>$user]);
+        $order = Order::where('id',$id)->first();
+
+        return view('orders.edit',['order'=>$order]);
     }
 
     /**
@@ -73,18 +78,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-        if ($data['password'] === null) {
-          unset($data['password']);
-        } else {
-          $data['password'] =\Hash::make($data['password']);
-        }
+      $order = Order::where('id',$id)->first();
 
-        $user->update($data);
+      $data = $request->validated();
 
-        return redirect()->route('user.index', $user);
+      $order->update ($data);
+
+      return redirect()->route('pedidos.index');
     }
 
     /**
@@ -95,11 +97,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $user = User::where('id',$id)->first();
+      $order = Order::where('id',$id)->first();
 
-      $user->delete();
+      $order->delete();
 
-      return redirect()->route('user.index');
+      return redirect()->route('pedidos.index');
     }
-
 }

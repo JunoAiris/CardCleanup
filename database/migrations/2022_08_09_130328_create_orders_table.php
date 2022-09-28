@@ -19,13 +19,13 @@ return new class extends Migration
             $table->integer('table_number');
             $table->string('status')->default('Em progresso');
             $table->integer('total_value')->default('000');
-            $table->integer('menu_id');
+            $table->integer('menu_id')->nullable();
             $table->foreignId('establishment_id')
               ->nullable()
               ->constrained('establishments')
               ->cascadeOnDelete();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

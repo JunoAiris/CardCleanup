@@ -13,7 +13,7 @@ class Establishment extends Model
         'company_name',
         'trading_name',
         'cnpj',
-        'address',
+        'adress',
         'phone',
     ];
 

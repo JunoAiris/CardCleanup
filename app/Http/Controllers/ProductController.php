@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -14,9 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $products = Product::all();
-
+      $products = Product::where('establishment_id', \Auth::user()->establishment_id)->get();
       return view('products.index', ['products'=>$products]);
+
     }
 
     /**
@@ -35,15 +36,31 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-      $data = $request->all();
+      $data = $request->validated();
+
+      $data['establishment_id'] = \Auth::user()->establishment_id;
 
       $available = isset($data['is_available'])?'1':'0';
 
       $data['is_available'] = $available;
 
-      Product::create($data);
+      $data['price'] = (int) ($data['price']*100);
+
+      $product = Product::create($data);
+
+      if($request->hasFile('image')){
+        $imageFile = $request->file('image');
+
+        $product->update([
+          'image_path' => $imageFile->storeAs(
+            "images/products/$product->id",
+            'image.jpg',
+            'public',
+          )
+        ]);
+      }
 
       return redirect()->route('produtos.index');
     }
@@ -65,8 +82,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product)
+    public function edit($id)
     {
+      $product = Product::where('id',$id)->first();
+
       return view('products.edit', ['product'=>$product]);
     }
 
@@ -78,19 +97,19 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, $id)
     {
-      dd($product);
+      $product = Product::where('id',$id)->first();
 
-      $data = $request->all();
+      $data = $request->validated();
+
+      $data['price'] = (int) ($data['price']*100);
 
       $available = isset($data['is_available'])?'1':'0';
 
       $data['is_available'] = $available;
 
       $product->update($data);
-      dd($request);
-
 
       return redirect()->route('produtos.index');
     }
@@ -103,6 +122,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $product = Product::where('id',$id)->first();
+
+      $product->delete();
+
+      return redirect()->route('produtos.index');
     }
 }

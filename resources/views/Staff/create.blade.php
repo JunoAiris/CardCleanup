@@ -55,15 +55,15 @@
 
           </div>
 
-          <div class="m-3 form-check w-25">
+          <div class="m-3 form-check">
             <label class="form-check-label" for="imgs">Adicionar uma imagem</label>
-            <input type="file" name="image" class="form-control" accept="image/png, image/jpeg">
-            @error('image')
-            <div class="text-danger">
-              {{ $message }}
-            </div>
-            @enderror
+            <input type="file" name="image" class="form-control" accept="image/*">
           </div>
+          @error('image')
+          <div class="text-danger">
+            {{ $message }}
+          </div>
+          @enderror
 
           <div class="my-3">
             <button type="submit" class="btn btn-primary">Adicionar</button>

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-          $table->foreignId('menu_id')
-            ->nullable()
-            ->constrained('menus')
-            ->cascadeOnDelete();
-        });
+      Schema::table('menus', function (Blueprint $table) {
+          $table->string('image_path')
+            ->nullable();
+          });
     }
 
     /**
@@ -28,8 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-          $table->dropColumns(['menu_id']);
-        });
+      Schema::table('menus', function (Blueprint $table) {
+          $table->dropColumns(['image_path']);
+      });
     }
 };

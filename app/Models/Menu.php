@@ -14,11 +14,13 @@ class Menu extends Model
         'description',
         'password',
         'is_active',
+        'establishment_id',
+        'image_path',
     ];
     protected $hidden = [
         'id',
     ];
-
+    
     public function establishments()
     {
         return $this->belongsTo(Establishment::class);

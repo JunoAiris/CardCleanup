@@ -14,6 +14,8 @@ class Product extends Model
         'description',
         'price',
         'is_available',
+        'image_path',
+        'establishment_id'
     ];
 
     protected $hidden = [
@@ -29,7 +31,7 @@ class Product extends Model
 
     public function menus()
     {
-        return $this->hasMany(Menu::class);
+        return $this->belongsToMany(Menu::class);
     }
 
     public function orders()

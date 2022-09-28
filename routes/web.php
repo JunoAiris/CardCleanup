@@ -13,30 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\Cardapio@GateCardapio');
-
-Route::get('/Cardapio', 'App\Http\Controllers\Cardapio@GateCardapio');
-
-Route::get('/Pedidos', 'App\Http\Controllers\Pedidos@GatePedidos');
-
-Route::get('/Cliente_Pedidos', 'App\Http\Controllers\ClientePedidos@GateClientePedidos');
-
-Route::get('/Edit_Cardapios', 'App\Http\Controllers\EditCardapios@GateEditCardapios');
-
-Route::get('/Edit_Estabelecimento', 'App\Http\Controllers\EditEstabelecimento@GateEditEstabelecimento');
-
-Route::get('/Edit_Funcionarios', 'App\Http\Controllers\EditFuncionarios@GateEditFuncionarios');
-
-Route::get('/Edit_Pedidos', 'App\Http\Controllers\EditPedidos@GateEditPedidos');
-
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-route::middleware('auth')->group(function(){
+Route::resource('estabelecimentos', App\Http\Controllers\EstablishmentController::class);
+
+Route::resource('cardapios', App\Http\Controllers\MenuController::class);
+
+Route::resource('pedidos', App\Http\Controllers\OrderController::class);
+
+Route::resource('produtos', App\Http\Controllers\ProductController::class);
+
+Route::middleware('auth')->group(function(){
   Route::resource('user', App\Http\Controllers\UserController::class);
 });
 
-route::middleware('auth')->group(function(){
-  Route::resource('produtos', App\Http\Controllers\ProductController::class);
-});
+Route::resource('menuProduct', App\Http\Controllers\MenuProductController::class)->only(['store','destroy']);
+
+Route::get('/cardapio/{menu}', 'App\Http\Controllers\MenuController@showPublic')->name('menu.public.show');
+
+Route::post('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@store')->name('MenuProductStore');
+
+Route::delete('/menuProduct/{menu_id}/{product_id}', 'App\Http\Controllers\MenuProductController@destroy')->name('MenuProductDestroy');

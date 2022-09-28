@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Establishment;
+use App\Http\Requests\EstablishmentRequest;
 
-class UserController extends Controller
+class EstablishmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::where('establishment_id', \Auth::user()->establishment_id)->get();
+        $establishments = Establishment::where('id', \Auth::user()->establishment_id)->get();
 
-      return view('users.index', ['users'=>$users]);
+        return view('establishments.index', ['establishments'=>$establishments]);
     }
 
     /**
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('establishments.create');
     }
 
     /**
@@ -35,13 +36,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstablishmentRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
-        User::create($data);
+        Establishment::create($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('estabelecimentos.index');
     }
 
     /**
@@ -61,9 +62,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('users.edit', ['user'=>$user]);
+        $product = Product::where('id',$id)->first();
+
+        return view('establishments.edit', ['establishment'=>$establishment]);
     }
 
     /**
@@ -73,18 +76,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(EstablishmentRequest $request, $id)
     {
-        $data = $request->all();
-        if ($data['password'] === null) {
-          unset($data['password']);
-        } else {
-          $data['password'] =\Hash::make($data['password']);
-        }
+        $establishment = Establishment::where('id',$id)->first();
 
-        $user->update($data);
+        $data = $request->validated();
 
-        return redirect()->route('user.index', $user);
+        $establishment->update($data);
+
+        return redirect()->route('estabelecimentos.index');
     }
 
     /**
@@ -95,11 +95,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $user = User::where('id',$id)->first();
+        $establishment = Establishmente::where('id',$id)->first();
 
-      $user->delete();
+        $establishment->delete();
 
-      return redirect()->route('user.index');
+        return redirect()->reoute('establecimentos.index');
     }
-
 }

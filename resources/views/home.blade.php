@@ -10,6 +10,7 @@
           <div class="card-body border-top border-dark">
             <h5 class="card-title">{{$menu->name}}</h5>
             <p class="card-text">{{$menu->description}}</p>
+            <a href="{{route('menu.public.show', $menu->id)}}" class="stretched-link"></a>
           </div>
         </div>
       </div>

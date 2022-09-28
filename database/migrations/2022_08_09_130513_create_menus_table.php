@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->tinyInteger('is_active');
+            $table->string('image_path')->nullable();
             $table->foreignId('establishment_id')
               ->nullable()
               ->constrained('establishments')

@@ -8,18 +8,26 @@
       <img src="{{asset('/storage/'.$menu->image_path)}}" width="50" height="60" alt="Sem Imagem">
     </div>
   </div>
+  <a class="btn btn-dark col text-light" href="{{ route('cardapios.index')}}">
+    Voltar
+  </a>
 
   <div class="content-justify-right mt-2 p-1 w-25">
     <form class="" action="{{route('MenuProductStore', $menu->id)}}" method="POST">
       @csrf
+      <div class="d-flex">
         <label for="Adicionar novo produto:"></label>
         <select class="form-select" id="product_id" name="product_id">
           @foreach($addableProducts as $product)
             <option value="{{$product->id}}"> {{$product->name}} </option>
           @endforeach
         </select>
-        <button type="submit" name="button" class="btn btn_success rounded">
+        <button type="submit" name="button" class="btn btn_outline_green rounded m-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00FF00" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
+          </svg>
         </button>
+      </div>
     </form>
   </div>
 

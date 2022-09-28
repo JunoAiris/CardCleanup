@@ -17,9 +17,9 @@
           <div class="mb-3">
             <label for="name" class="form-label">Mesa</label>
             <select class="form-select" aria-label="Selecionar Mesa" id="table_number" name="table_number">
-              <option value="1">Nº 1</option>
-              <option value="2">Nº 2</option>
-              <option value="3">Nº 3</option>
+              <option value="1" @if ($order->table_number == 1) selected @endif >Nº 1</option>
+              <option value="2" @if ($order->table_number == 2) selected @endif >Nº 2</option>
+              <option value="3" @if ($order->table_number == 3) selected @endif >Nº 3</option>
             </select>
             @error('table_number')
             <div class="text-danger">
@@ -31,10 +31,10 @@
           <div class="mb-3">
             <label for="description" class="form-label">Status</label>
             <select class="form-select" aria-label="Default select example" id="status" name="status">
-              <option value="Em Espera">Em Espera</option>
-              <option value="Em Progresso">Em Progresso</option>
-              <option value="A Entregar">A entregar</option>
-              <option value="Completo">Completo</option>
+              <option value="Em Espera" @if ($order->status == 'Em Espera') selected @endif >Em Espera</option>
+              <option value="Em Progresso" @if ($order->status == 'Em Progresso') selected @endif >Em Progresso</option>
+              <option value="A Entregar" @if ($order->status == 'A Entregar') selected @endif >A entregar</option>
+              <option value="Completo" @if ($order->status == 'Completo') selected @endif >Completo</option>
             </select>
             @error('status')
             <div class="text-danger">
@@ -46,7 +46,7 @@
 
           <div class="mb-3 mt-2">
             <label for="price" class="form-label">Valor total</label>
-            <input type="text" class="form-control" id="total_value" name="total_value" value="{{ old('total_value', $order->total_value) }}">
+            <input type="text" class="form-control" id="total_value" name="total_value" value="{{$order->total_value/100}}">
             @error('total_value')
               <div class="text-danger">
                 {{ $message }}

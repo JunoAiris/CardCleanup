@@ -3,9 +3,9 @@
 @section('content')
   <div class="container p-3 m-3 mb-5 w-100 border border-dark bg-gradient bg-secondary text-dark">
     <div class="d-grid gap-2 col-6 mx-auto my-3">
-      <h3 class="text-center col">Visualização de Usuários</h3>
+      <h3 class="text-center col">Visualização de Funcionários</h3>
       <a class="btn btn-dark text-light col" href="{{ route('user.create') }}">
-        Adicionar novo usuário
+        Adicionar novo funcionário
       </a>
     </div>
 

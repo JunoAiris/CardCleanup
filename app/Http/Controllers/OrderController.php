@@ -55,10 +55,29 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
+     public function show($id)
+     {
+         $order = Order::where('id',$id)->first();
+         $addableProducts = Product::where('establishment_id', $menu->establishment_id)
+           ->whereDoesntHave('menus', function($query) use ($menu) {
+             $query->where('menus.id', $menu->id);
+           })
+           ->get();
+         return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
+     }
+
+     public function showPublic(Menu $menu)
+     {
+       $addableProducts = Product::where('establishment_id', $menu->establishment_id)
+         ->whereDoesntHave('menus', function($query) use ($menu) {
+           $query->where('menus.id', $menu->id);
+         })
+         ->get();
+       return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
+
+       return view('menus.public.show', ['menu'=>$menu]);
+     }
 
     /**
      * Show the form for editing the specified resource.

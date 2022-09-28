@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('price');
             $table->tinyInteger('is_available');
+            $table->string('image_path')->nullable();
             $table->foreignId('establishment_id')
               ->nullable()
               ->constrained('establishments')

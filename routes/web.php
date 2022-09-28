@@ -37,4 +37,4 @@ Route::get('/cardapio/{menu}', 'App\Http\Controllers\MenuController@showPublic')
 
 Route::post('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@store')->name('MenuProductStore');
 
-Route::delete('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@destroy')->name('MenuProductDestroy');
+Route::delete('/menuProduct/{menu_id}/{product_id}', 'App\Http\Controllers\MenuProductController@destroy')->name('MenuProductDestroy');

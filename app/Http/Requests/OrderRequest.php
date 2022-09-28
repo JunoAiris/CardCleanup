@@ -27,7 +27,6 @@ class OrderRequest extends FormRequest
             'table_number' => 'required|numeric',
             'status' => 'required',
             'total_value' => 'required|numeric|min:50',
-            'menu_id' =>'nullable',
         ];
     }
 }

@@ -16,8 +16,10 @@ class MenuProductController extends Controller
         return redirect()->route('cardapios.show', $menu->id);
     }
 
-    public function destroy(Menu $menu, Product $product)
+    public function destroy($menu_id, $product_id)
     {
+        $menu = Menu::where('id',$menu_id)->first(); //
+        $product = Product::where('id',$product_id)->first();
         $menu->products()->detach($product->id);
         return redirect()->route('cardapios.show', $menu->id);
     }

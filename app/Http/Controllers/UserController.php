@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      $users = User::all();
+      $users = User::where('establishment_id', \Auth::user()->establishment_id)->get();
 
       return view('users.index', ['users'=>$users]);
     }

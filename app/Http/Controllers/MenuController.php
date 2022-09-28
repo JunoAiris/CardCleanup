@@ -16,7 +16,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+        $menus = Menu::where('establishment_id', \Auth::user()->establishment_id)->get();
 
         return view('menus.index', ['menus'=>$menus]);
     }

@@ -15,7 +15,7 @@ class EstablishmentController extends Controller
      */
     public function index()
     {
-        $establishments = Establishment::all();
+        $establishments = Establishment::where('establishment_id', \Auth::user()->establishment_id)->get();
 
         return view('establishments.index', ['establishments'=>$establishments]);
     }

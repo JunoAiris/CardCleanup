@@ -8,43 +8,61 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Product;
 
+
 class ProductTest extends TestCase
 {
-    protected function setUp():void {
-      parent::setUp();
 
+    protected function setUp():void {
+
+      parent::setUp();
       $this->post('/register', [
         'name' => 'Anne',
         'email' => 'AlephJuno@proton.me',
         'password' => 'FalseDream',
         'password_confirmation' => 'FalseDream',
-        'type' => 'Manager',
         'company_name' => 'Lies LLC',
         'trading_name' => 'Truth LLC',
         'address' => 'Luna',
         'phone' => '999999999',
-        'cnpj' => '888888888888'
+        'cnpj' => '888888888888',
+        'type' => 'Manager',
       ]);
 
       $user = User::where('email', 'AlephJuno@proton.me')->first();
       $this->actingAs($user);
     }
 
-    public function page_can_be_reached(){
-        $response = $this->get('/produtos');
+    public function test_page_exists(){
+      $response = $this->get('/produtos');
 
-        $response->assertStatus(200);
+      $response->assertStatus(200);
     }
 
-    public function page_lists_data(){
+    public function test_data_register_successful_plus_redirect(){
+      $response = $this->post('/produtos', [
+        'name' => 'TempTest',
+        'description' => 'TempTest',
+        'price' => '00101010',
+        'is_available' => '1',
+      ]);
 
+      $response->assertRedirect()
+       ->assertSessionHasNoErrors();
+
+      $this->assertDatabaseHas('products', [
+        'name' => 'TempTest',
+        'description' => 'TempTest',
+      ]);
     }
 
-    public function pushes_valid_data_to_db(){
+    public function test_data_register_halt_on_invalid_data(){
+      $response =$this->post('/produtos', [
+        'name' => 'TempTest',
+        'description' => 'TempTest',
+        'price' => 'TempTest',
+        'is_available' => '0',
+      ]);
 
-    }
-
-    public function pushes_invalid_data_to_db(){
-
+      $response->assertRedirect()->assertInvalid(['price']);
     }
 }

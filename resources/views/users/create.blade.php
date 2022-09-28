@@ -95,8 +95,8 @@
 
           <div class="col-md-6">
             <select class="form-select" aria-label="função" id="type" name="type">
-              <option value="manager">Funcionário</option>
-              <option value="staff">Gerente</option>
+              <option value="manager">Gerente</option>
+              <option value="staff">Funcionário</option>
             </select>
           </div>
       </div>

@@ -25,11 +25,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'cpf' => 'required|numeric|min:11|max:11',
             'phone' => 'nullable|numeric|min:12|max:12',
             'type' => 'required'
+            'establishment_id' => ''
         ];
     }
 }

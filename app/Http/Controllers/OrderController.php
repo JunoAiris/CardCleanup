@@ -42,6 +42,8 @@ class OrderController extends Controller
 
         $data['establishment_id'] = \Auth::user()->establishment_id;
 
+        $data['total_value'] = (int) ($data['total_value']*100);
+
         Order::create($data);
 
         return redirect()->route('pedidos.index');
@@ -78,7 +80,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
       $order = Order::where('id',$id)->first();
 

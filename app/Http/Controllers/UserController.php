@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -38,6 +39,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $data['establishment_id'] = \Auth::user()->establishment_id;
 
         User::create($data);
 

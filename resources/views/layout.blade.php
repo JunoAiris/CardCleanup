@@ -44,7 +44,7 @@
                 <a class="nav-link  text-light" aria-current="page" href="{{ route('cardapios.index')}}">Cardápios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  text-light" href="{{route('pedidos.index')}}">Pedidos</a>
+                <a class="nav-link disabled text-secondary" href="{{route('pedidos.index')}}">Pedidos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link  text-light" href="{{route('produtos.index')}}">Produtos</a>

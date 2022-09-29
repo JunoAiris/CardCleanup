@@ -15,6 +15,7 @@
           <th scope="row">Numero da mesa</th>
           <th>Status</th>
           <th>Valor total</th>
+          <th>Ver Detalhes</th>
           <th>Editar</th>
           <th>Deletar</th>
         </thead>
@@ -24,6 +25,13 @@
               <th scope="row">{{$order->table_number}}</th>
               <td>{{$order->status}}</td>
               <td>{{($order->total_value)/100}}</td>
+              <td>
+                <a alt="Ver Detalhes" href="{{ route('pedidos.show', $order->id)}}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#505050" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </a>
+              </td>
               <td>
                 <a alt="Editar" href="{{ route('pedidos.edit', $order->id)}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#505050" class="bi bi-brush" viewBox="0 0 16 16">

@@ -39,6 +39,8 @@ Route::post('/menuProduct/{id}', 'App\Http\Controllers\MenuProductController@sto
 
 Route::delete('/menuProduct/{menu_id}/{product_id}', 'App\Http\Controllers\MenuProductController@destroy')->name('MenuProductDestroy');
 
+Route::get('/pedido/{id}', 'App\Http\Controllers\OrderController@showPublic')->name('order.public.show');
+
 Route::post('/orderProduct/{id}', 'App\Http\Controllers\OrderProductController@store')->name('OrderProductStore');
 
 Route::delete('/orderProduct/{order_id}/{product_id}', 'App\Http\Controllers\OrderProductController@destroy')->name('OrderProductDestroy');

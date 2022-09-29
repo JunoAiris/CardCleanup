@@ -73,12 +73,12 @@ class MenuController extends Controller
     public function show($id)
     {
         $menu = Menu::where('id',$id)->first();
-        // dd($menu);
         $addableProducts = Product::where('establishment_id', $menu->establishment_id)
           ->whereDoesntHave('menus', function($query) use ($menu) {
             $query->where('menus.id', $menu->id);
           })
           ->get();
+        dd($menu->products);
         return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
     }
 
@@ -89,8 +89,6 @@ class MenuController extends Controller
           $query->where('menus.id', $menu->id);
         })
         ->get();
-      return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
-
       return view('menus.public.show', ['menu'=>$menu]);
     }
 

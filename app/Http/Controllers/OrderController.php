@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use App\Http\Requests\OrderRequest;
+use App\Models\Menu;
 
 class OrderController extends Controller
 {
@@ -58,25 +60,24 @@ class OrderController extends Controller
 
      public function show($id)
      {
-         $order = Order::where('id',$id)->first();
-         $addableProducts = Product::where('establishment_id', $menu->establishment_id)
-           ->whereDoesntHave('menus', function($query) use ($menu) {
-             $query->where('menus.id', $menu->id);
-           })
-           ->get();
-         return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
-     }
-
-     public function showPublic(Menu $menu)
-     {
-       $addableProducts = Product::where('establishment_id', $menu->establishment_id)
-         ->whereDoesntHave('menus', function($query) use ($menu) {
-           $query->where('menus.id', $menu->id);
+       $order = Order::where('id',$id)->first();
+       $addableProducts = Product::where('establishment_id', $order->establishment_id)
+         ->whereDoesntHave('orders', function($query) use ($order) {
+           $query->where('orders.id', $order->id);
          })
          ->get();
-       return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
+       dd($order->products);
+       return view('orders.show',['order' => $order, 'addableProducts' => $addableProducts]);
+     }
 
-       return view('menus.public.show', ['menu'=>$menu]);
+     public function showPublic(Order $order, $id)
+     {
+       $product = Product::where('establishment_id', $order->establishment_id)
+        ->whereHas('orders', function($query) use ($order) {
+           $query->where('orders.id', $order->id);
+         })
+         ->get();
+       return view('orders.public.show', ['order' => $order, 'product' => $product, 'menu' => $menu,]);
      }
 
     /**

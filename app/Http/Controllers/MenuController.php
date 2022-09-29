@@ -78,7 +78,6 @@ class MenuController extends Controller
             $query->where('menus.id', $menu->id);
           })
           ->get();
-        dd($menu->products);
         return view('menus.show',['menu' => $menu, 'addableProducts' => $addableProducts]);
     }
 
